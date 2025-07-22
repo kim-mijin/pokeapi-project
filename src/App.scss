@@ -1,0 +1,12 @@
+main {
+    section{
+        background-color: white;
+        transition: 0.3s;
+        &:hover {
+            transform: scal(1.1);
+            transition: 0.3s;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+        }
+    }    
+
+}

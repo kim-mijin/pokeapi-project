@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import './App.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchMultiplePokemonById } from './RTK/thunk'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 
 import Search from './pages/Search'
 import Main from './pages/Main'
@@ -11,24 +11,23 @@ import Favorite from './pages/Favorite'
 
 function App() {
   const dispatch = useDispatch()
-  const pokemonData = useSelector(state => state.pokemon)
-
+  const navigate = useNavigate()
+  
   useEffect(() => {
     dispatch(fetchMultiplePokemonById(151))
-  }, [dispatch])
-
-  console.log(pokemonData)
+  }, [])
   
   return (
     <>
-      <h1 className="text-[40px] text-center">포켓몬 도감</h1>
-      <nav className="flex gap-[10px] justify-center">
+      <h1 className="border-t-[50px] border-t-[red] bg-text-[40px] bg-black text-white text-[40px] text-center">포켓몬 도감</h1>
+      <nav className="py-[10px] border-b-black border-b-[3px] flex gap-[10px] justify-center">
         <Link to="/">메인</Link>
-        <Link to="/detail/1">상세정보</Link>
-        <Link to="/search">검색</Link>
         <Link to="/favorite">찜목록</Link>
+        <input onChange={(e) => navigate(`/search?pokemon=${e.target.value}`)} 
+        className='w-[120px] border-b border-[darkgray] px-2'/>
+        <span>🔎</span>
       </nav>
-      <main className='flex flex-wrap gap-[20px] justify-center pt-[20px]'>
+      <main className='bg-[gray] flex flex-wrap gap-[20px] justify-center pt-[20px] pb-[20px]'>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/detail/:pokemonId" element={<Detail />} />
