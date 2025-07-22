@@ -10,6 +10,15 @@ export default function Detail() {
     console.log("pokemonId:", pokemonId)
     console.log("pokemon:", pokemon)
     
+    if (!pokemon) {
+        return (
+            <div>
+                <div>포켓몬 정보를 찾을 수 없습니다.</div>
+                <div>존재하지 않는 포켓몬이거나, 데이터를 불러오는 중입니다.</div>
+            </div>
+        )
+    }
+
  return (
         <div className="bg-white flex flex-col justify-center
         items-center border py-[30px] px-[60px] rounded-[10px]
